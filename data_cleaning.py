@@ -46,4 +46,31 @@ df['AWS'] = df['Job Description'].apply(lambda x: 1 if 'aws' in x.lower() else 0
 df['Tableau'] = df['Job Description'].apply(lambda x: 1 if 'tableau' in x.lower() else 0)
 df['Excel'] = df['Job Description'].apply(lambda x: 1 if 'excel' in x.lower() else 0)
 
+def Categorized_title(Job_title):
+    if 'data scientist' in Job_title.lower():
+        return 'Data Scientist'
+    elif 'data engineer' in Job_title.lower():
+        return 'Data Engineer'
+    elif 'analyst' in Job_title.lower():
+        return 'Analyst'
+    elif 'machine learning' in Job_title.lower():
+        return 'Mle'
+    elif 'manager' in Job_title.lower():
+        return 'Manager'
+    elif 'director' in Job_title.lower():
+        return 'Director'
+    else:
+        return 'NA'
+
+def seniority(Job_title):
+    if 'sr' in Job_title.lower() or 'senior' in Job_title.lower() or 'sr' in Job_title.lower() or 'lead' in Job_title.lower() or 'principal' in Job_title.lower():
+        return 'Senior'
+    elif 'jr' in Job_title.lower() or 'junior' in Job_title.lower():
+        return 'Junior'
+    else:
+        return 'NA'
+    
+df['Categorized_title'] = df['Job Title'].apply(Categorized_title)
+df['Seniority'] = df['Job Title'].apply(seniority)
+
 df.to_csv('Cleaned_data.csv', index = False)
