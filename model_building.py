@@ -8,6 +8,7 @@ Created on Wed Jul  1 14:52:49 2020
 import pandas as pd
 import numpy as np
 import random
+import pickle
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error
@@ -42,8 +43,8 @@ prediction_ml=ml.predict(x_test)
 print('Prediction of multiple linear regression>', prediction_ml )
 
 # #Support Vector Regression
-clf = SVR(kernel='poly', C=1e2, degree=3)
-pred=clf.fit(x_train, y_train)
+sv = SVR(kernel='poly', C=1e2, degree=3)
+pred=sv.fit(x_train, y_train)
 prediction_svr=pred.predict(x_test)
 print('Prediction of support vector regression>', prediction_svr )
 
@@ -78,4 +79,11 @@ cross_val_score_rf=np.mean(cross_val_score(rf,x_train,y_train,scoring = 'neg_mea
 print('MAE for random forest regression >',mean_absolute_error(y_test,tpred_rf))
 
 
+pickl = {'model': model.best_estimator_}
+pickle.dump( pickl, open( 'model_file' + ".p", "wb" ) )
 
+file_name = "model_file.p"
+with open(file_name, 'rb') as pickled:
+    data = pickle.load(pickled)
+    model = data['model']
+    
