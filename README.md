@@ -65,3 +65,30 @@ Scraped 1000 job postings from glassdoor.com. Following fields were scraped from
 * Column for simplified job title and Seniority
 * Column for description length
 
+## Exploratory Data Analysis
+
+Below are some of the important findings from the exploratory data analysis:
+
+![alt text](https://github.com/Devsh3th/ds_jobs_proj/blob/master/images/salaryrole.png "Salary based on role")
+![alt text](https://github.com/Devsh3th/ds_jobs_proj/blob/master/images/data_role.png "Data roles")
+![alt text](https://github.com/Devsh3th/ds_jobs_proj/blob/master/images/jobsector.png "Job Sectors")
+![alt text](https://github.com/Devsh3th/ds_jobs_proj/blob/master/images/jobstate.png "Job State")
+![alt text](https://github.com/Devsh3th/ds_jobs_proj/blob/master/images/revenue.png "Company Revenue")
+
+## Model Building and Evaluation
+
+Categorical variables tranformed to dummy variables. 
+
+Three different models built and tuned. Evaluation done through Mean Absolute Error(MAE).
+
+Performance of the models is given below:
+
+* **MAE for Multiple Linear Regression** : 19.67078838952545
+* **MAE for Support Vector Regression** : 30.088913715302816
+* **MAE for Random Forest** : 14.452240720416757
+
+Random Forest gives least error and it also shows that it performs better on sparse matrix.
+
+## Productionization
+
+In the final step, I built a Flask API endpoint which is hosted locally with the help of article referenced above. The API endpoint can give the predicted salary based on the model we built from the list of features we give as input.
